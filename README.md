@@ -1,81 +1,104 @@
-# Turborepo starter
+# LLD Apps
 
-This is an official starter Turborepo.
+A monorepo for Low Level Design of common problems implementations using React, TypeScript, and Tailwind CSS. Built with Turborepo and Vite.
 
-## Using this example
+## Project Structure
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
+```bash
+├── apps/                    # Application projects
+│   └── template/           # Template for new applications
+├── packages/               # Shared packages
+│   ├── eslint-config/     # Shared ESLint configurations
+│   ├── tailwind-config/   # Shared Tailwind configurations
+│   └── typescript-config/ # Shared TypeScript configurations
+└── scripts/               # Utility scripts
 ```
 
-## What's inside?
+## Prerequisites
 
-This Turborepo includes the following packages/apps:
+- Node.js >= 18
+- pnpm 9.0.0
 
-### Apps and Packages
+## Quick Start
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+1. Clone the repository:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```bash
+git clone https://github.com/mandy8055/lld-apps.git
+cd lld-apps
 ```
 
-### Develop
+2. Install dependencies:
 
-To develop all apps and packages, run the following command:
-
+```bash
+pnpm install
 ```
-cd my-turborepo
+
+3. Create a new app from template:
+
+```bash
+pnpm create-app your-app-name
+```
+
+4. Start development server:
+
+```bash
+# For all apps
 pnpm dev
+
+# For a specific app
+pnpm dev --filter <app_name>
 ```
 
-### Remote Caching
+## Available Scripts
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- `pnpm dev` - Start development server for all apps
+- `pnpm build` - Build all apps
+- `pnpm lint` - Lint all apps
+- `pnpm format` - Format code using Prettier
+- `pnpm create-app [name]` - Create a new app from template
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+## Tech Stack
 
+- **Framework:** React 19
+- **Build Tool:** Vite
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Monorepo Management:** Turborepo
+- **Package Manager:** pnpm
+
+## Project Configuration
+
+### Workspace Structure
+
+The project uses a monorepo structure with shared configurations:
+
+- `packages/eslint-config` - Shared ESLint rules
+- `packages/tailwind-config` - Shared Tailwind CSS configuration
+- `packages/typescript-config` - Shared TypeScript configuration
+
+### Creating New Apps
+
+Use the provided script to create new apps:
+
+```bash
+pnpm create-app my-new-app
 ```
-cd my-turborepo
-npx turbo login
-```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+This will:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+1. Copy the template app structure
+2. Set up necessary configurations
+3. Update package.json with the new app name
+4. Install dependencies
 
-```
-npx turbo link
-```
+## Development Guidelines
 
-## Useful Links
+1. All new apps should be created using the `create-app` script
+2. Use shared configurations from the `packages` directory
+3. Follow the existing project structure and coding conventions
+4. Ensure all apps are built and tested before committing
 
-Learn more about the power of Turborepo:
+## License
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+[Your License]
