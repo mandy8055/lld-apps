@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/public/index.html"
+    },
+    {
+      "source": "/nested-comments/:path*",
+      "destination": "/apps/nested-comments/dist/:path*"
+    },
+    {
+      "source": "/calculator/:path*",
+      "destination": "/apps/calculator/dist/:path*"
+    }
+  ]
+}

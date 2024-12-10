@@ -1,5 +1,7 @@
 # LLD Apps
 
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/lld-apps) [![lld-apps CI/CD](https://github.com/mandy8055/lld-apps/actions/workflows/workflow.yml/badge.svg)](https://github.com/mandy8055/lld-apps/actions/workflows/workflow.yml) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-f9ad00.svg)](https://pnpm.io/)
+
 A monorepo for Low Level Design of common problems implementations using React, TypeScript, and Tailwind CSS. Built with Turborepo and Vite.
 
 ## Project Structure

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My LLD Apps</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: #f4f4f9;
+      }
+      .container {
+        max-width: 800px;
+        padding: 2rem;
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 1rem;
+      }
+      .apps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .app-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+      }
+      .app-card:hover {
+        transform: translateY(-5px);
+      }
+      a {
+        text-decoration: none;
+        color: #0070f3;
+      }
+      .app-description {
+        color: #666;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to My LLD Apps</h1>
+      <p>A collection of Low Level Design implementations</p>
+
+      <div class="apps-grid">
+        <div class="app-card">
+          <h2><a href="/nested-comments">Nested Comments</a></h2>
+          <p class="app-description">
+            A recursive comment system implementation
+          </p>
+        </div>
+
+        <div class="app-card">
+          <h2><a href="/calculator">Calculator</a></h2>
+          <p class="app-description">A simple calculator implementation</p>
+        </div>
+        <!-- Add more app cards as needed -->
+      </div>
+    </div>
+  </body>
+</html>
