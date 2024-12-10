@@ -32,6 +32,8 @@ jobs:
       - name: Build affected apps
         # run: pnpm build --filter=[HEAD^1]
         run: pnpm build --affected
+        env:
+          TURBO_REMOTE_ONLY: 'true'
 
   Deploy-Production:
     runs-on: ubuntu-24.04

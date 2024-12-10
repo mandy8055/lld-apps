@@ -32,12 +32,14 @@ jobs:
 
       - name: Build affected apps
         run: pnpm build --filter=[HEAD^1]
+        env:
+          TURBO_REMOTE_ONLY: 'true'
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=preview --token=${{ secrets.TURBO_TOKEN }}
 
       - name: Deploy to Vercel
-        run: vercel deploy --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --token=${{ secrets.TURBO_TOKEN }}
