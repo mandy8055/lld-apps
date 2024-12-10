@@ -1,0 +1,45 @@
+name: lld-apps CI/CD
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/**'
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # This ensures we have history to compare against
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get changed directories
+        id: changed-dirs
+        run: |
+          CHANGED_DIRS=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '^apps/' | cut -d'/' -f2 | sort -u | xargs)
+          echo "dirs=$CHANGED_DIRS" >> $GITHUB_OUTPUT
+
+      - name: Run Linting for changed apps
+        if: steps.changed-dirs.outputs.dirs != ''
+        run: |
+          for dir in ${{ steps.changed-dirs.outputs.dirs }}; do
+            echo "Linting apps/$dir"
+            pnpm lint --filter $dir
+          done
+
+      # - name: Run Tests for changed apps
+      #   if: steps.changed-dirs.outputs.dirs != ''
+      #   run: |
+      #     for dir in ${{ steps.changed-dirs.outputs.dirs }}; do
+      #       echo "Testing apps/$dir"
+      #       pnpm test --filter $dir
+      #     done
