@@ -29,21 +29,38 @@ jobs:
       - name: Get changed directories
         id: changed-dirs
         run: |
-          CHANGED_DIRS=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '^apps/' | cut -d'/' -f2 | sort -u | xargs)
+          # Fetch the base branch
+          git fetch origin ${{ github.base_ref }}
+
+          # Get changed files between PR branch and base branch
+          CHANGED_DIRS=$(git diff --name-only origin/${{ github.base_ref }} | grep '^apps/' | cut -d'/' -f2 | sort -u || true)
+
+          # Debug output
+          echo "Changed files in apps directory:"
+          git diff --name-only origin/${{ github.base_ref }} | grep '^apps/' || true
+
+          echo "Extracted directories:"
+          echo "$CHANGED_DIRS"
+
+          # Set output
           echo "dirs=$CHANGED_DIRS" >> $GITHUB_OUTPUT
 
       - name: Run Linting for changed apps
         if: steps.changed-dirs.outputs.dirs != ''
         run: |
           for dir in ${{ steps.changed-dirs.outputs.dirs }}; do
-            echo "Linting apps/$dir"
-            pnpm lint --filter $dir
+            if [ -d "apps/$dir" ]; then
+              echo "Linting apps/$dir"
+              pnpm lint --filter $dir
+            fi
           done
 
-      # - name: Run Tests for changed apps
-      #   if: steps.changed-dirs.outputs.dirs != ''
-      #   run: |
-      #     for dir in ${{ steps.changed-dirs.outputs.dirs }}; do
-      #       echo "Testing apps/$dir"
-      #       pnpm test --filter $dir
-      #     done
+      - name: Run Tests for changed apps
+        if: steps.changed-dirs.outputs.dirs != ''
+        run: |
+          for dir in ${{ steps.changed-dirs.outputs.dirs }}; do
+            if [ -d "apps/$dir" ]; then
+              echo "Testing apps/$dir"
+              pnpm test --filter $dir
+            fi
+          done
