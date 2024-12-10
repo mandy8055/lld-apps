@@ -1,17 +1,15 @@
-name: lld-apps CI/CD
+name: Main Branch Build
 on:
-  pull_request:
+  push:
     branches: [main]
     paths:
       - 'apps/**'
 
 jobs:
-  lint-and-test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # This ensures we have history to compare against
 
       - uses: pnpm/action-setup@v2
         with:
@@ -29,21 +27,13 @@ jobs:
       - name: Get changed directories
         id: changed-dirs
         run: |
-          CHANGED_DIRS=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '^apps/' | cut -d'/' -f2 | sort -u | xargs)
+          CHANGED_DIRS=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^apps/' | cut -d'/' -f2 | sort -u | xargs)
           echo "dirs=$CHANGED_DIRS" >> $GITHUB_OUTPUT
 
-      - name: Run Linting for changed apps
+      - name: Build changed apps
         if: steps.changed-dirs.outputs.dirs != ''
         run: |
           for dir in ${{ steps.changed-dirs.outputs.dirs }}; do
-            echo "Linting apps/$dir"
-            pnpm lint --filter $dir
+            echo "Building apps/$dir"
+            pnpm build --filter $dir
           done
-
-      # - name: Run Tests for changed apps
-      #   if: steps.changed-dirs.outputs.dirs != ''
-      #   run: |
-      #     for dir in ${{ steps.changed-dirs.outputs.dirs }}; do
-      #       echo "Testing apps/$dir"
-      #       pnpm test --filter $dir
-      #     done
