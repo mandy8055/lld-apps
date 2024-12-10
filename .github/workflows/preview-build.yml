@@ -7,7 +7,7 @@ on:
       - 'apps/**'
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-24.04
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2 # Needed for turborepo to detect changes
+          fetch-depth: 2
 
       - uses: pnpm/action-setup@v3
         with:
@@ -31,19 +31,13 @@ jobs:
         run: pnpm install
 
       - name: Build affected apps
-        # run: pnpm build --filter=[HEAD^1]
-        run: pnpm build --affected
+        run: pnpm build --filter=[HEAD^1]
 
-  Deploy-Preview:
-    runs-on: ubuntu-24.04
-    env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-    steps:
-      - uses: actions/checkout@v4
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel
+        run: vercel deploy --token=${{ secrets.VERCEL_TOKEN }}
