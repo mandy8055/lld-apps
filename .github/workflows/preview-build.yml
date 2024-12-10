@@ -30,6 +30,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Debug Environment
+        run: |
+          echo "TURBO_TEAM is set: ${{ secrets.TURBO_TEAM != '' }}"
+          echo "TURBO_TOKEN length: ${#TURBO_TOKEN}"
+          echo "Current working directory: $(pwd)"
+          echo "Files in current directory: $(ls -la)"
+
       - name: Build affected apps
         run: pnpm build --filter=[HEAD^1]
         env:
