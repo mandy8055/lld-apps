@@ -1,7 +1,8 @@
-name: Main Branch Build
+name: Preview Build
 on:
   push:
-    branches: [main]
+    branches-ignore:
+      - main
     paths:
       - 'apps/**'
 
@@ -33,7 +34,7 @@ jobs:
         # run: pnpm build --filter=[HEAD^1]
         run: pnpm build --affected
 
-  Deploy-Production:
+  Deploy-Preview:
     runs-on: ubuntu-24.04
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -43,6 +44,6 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
