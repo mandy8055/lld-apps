@@ -5,8 +5,16 @@
       "destination": "/public/index.html"
     },
     {
+      "source": "/nested-comments",
+      "destination": "/apps/nested-comments/dist/index.html"
+    },
+    {
       "source": "/nested-comments/:path*",
       "destination": "/apps/nested-comments/dist/:path*"
+    },
+    {
+      "source": "/calculator",
+      "destination": "/apps/calculator/dist/index.html"
     },
     {
       "source": "/calculator/:path*",
