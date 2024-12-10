@@ -30,7 +30,7 @@ jobs:
         run: pnpm install
 
       - name: Build affected apps
-        run: pnpm build --affected
+        run: pnpm build
         env:
           TURBO_REMOTE_ONLY: 'true'
 
