@@ -1,16 +1,9 @@
 name: Preview Build
 on:
-  workflow_run:
-    workflows: ['PR Checks'] # Name of the pr-checks.yml workflow
-    types:
-      - completed
-    branches-ignore:
-      - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
-    # Only run if PR Checks workflow succeeded
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-24.04
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
@@ -52,4 +45,9 @@ jobs:
         run: vercel pull --yes --environment=preview --token=${{ secrets.TURBO_TOKEN }}
 
       - name: Deploy to Vercel
-        run: vercel deploy --token=${{ secrets.TURBO_TOKEN }}
+        run: |
+          vercel deploy --token=${{ secrets.TURBO_TOKEN }} \
+          --meta githubCommitSha=${{ github.sha }} \
+          --meta githubCommitAuthorName="${{ github.actor }}" \
+          --meta githubCommitMessage="${{ github.event.head_commit.message }}" \
+          --meta githubPrId=${{ github.event.pull_request.number }}

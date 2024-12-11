@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build affected apps
+      - name: Build all apps
         run: pnpm build
         env:
           TURBO_REMOTE_ONLY: 'true'
@@ -41,4 +41,9 @@ jobs:
         run: vercel pull --yes --environment=production --token=${{ secrets.TURBO_TOKEN }}
 
       - name: Deploy to Vercel
-        run: vercel deploy --prod --token=${{ secrets.TURBO_TOKEN }}
+        run: |
+          vercel deploy --prod --token=${{ secrets.TURBO_TOKEN }} \
+          --meta githubCommitSha=${{ github.sha }} \
+          --meta githubCommitAuthorName="${{ github.actor }}" \
+          --meta githubCommitMessage="${{ github.event.head_commit.message }}" \
+          --meta githubRepo="${{ github.repository }}"

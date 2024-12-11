@@ -1,5 +1,5 @@
 const App: React.FC = () => {
-  return <div>Hello World!</div>;
+  return <h1 className='font-bold text-3xl'>Hello World!</h1>;
 };
 
 export default App;

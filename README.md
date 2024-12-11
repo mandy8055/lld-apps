@@ -60,6 +60,8 @@ pnpm dev --filter <app_name>
 - `pnpm format` - Format code using Prettier
 - `pnpm create-app [name]` - Create a new app from template
 
+> **Note**: You can also use --filter command to build and lint scripts for specific apps.
+
 ## Tech Stack
 
 - **Framework:** React 19
@@ -68,6 +70,8 @@ pnpm dev --filter <app_name>
 - **Styling:** Tailwind CSS
 - **Monorepo Management:** Turborepo
 - **Package Manager:** pnpm
+- **Deployment:** Vercel
+- **CI/CD:** Github-actions
 
 ## Project Configuration
 
@@ -100,6 +104,37 @@ This will:
 2. Use shared configurations from the `packages` directory
 3. Follow the existing project structure and coding conventions
 4. Ensure all apps are built and tested before committing
+
+## Deployment
+
+### Preview Environment
+
+To manually trigger a preview deployment:
+
+1. Navigate to the repository's "Actions" tab
+2. Select "Preview Build" from the workflows list
+3. Click "Run workflow"
+4. Select the desired branch
+5. Click the green "Run workflow" button
+
+### Production Environment
+
+Production deployments are automatically triggered when:
+
+1. A pull request is merged into the `main` branch
+2. Changes are made in the `apps/**` directory
+
+The production build workflow will:
+
+- Build all applications
+- Deploy to Vercel production environment
+- Include commit metadata in the deployment
+
+> **Note**: Production deployments do not require manual intervention and are automatically handled by the CI/CD pipeline.
+
+### Build Optimization
+
+We are using **Vercel** for deployment and [**TurboRepo's remote caching feature**](https://turbo.build/repo/docs/core-concepts/remote-caching) to optimize build times. This allows for faster builds by caching previous build outputs and only rebuilding what has changed, significantly improving the efficiency of our CI/CD process.
 
 ## License
 
