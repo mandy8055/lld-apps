@@ -1,5 +1,4 @@
 name: Main Branch Build
-
 on:
   push:
     branches: [main]
@@ -14,7 +13,6 @@ jobs:
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,10 +36,11 @@ jobs:
         env:
           TURBO_REMOTE_ONLY: 'true'
 
-      - name: Deploy to Prod
-        uses: vercel/vercel-action@v2
-        with:
-          vercel-token: ${{ secrets.TURBO_TOKEN }}
-          vercel-args: '--prod'
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.TURBO_TOKEN }}
+
+      - name: Deploy to Vercel Prod
+        run: vercel deploy --prod --token=${{ secrets.TURBO_TOKEN }}
