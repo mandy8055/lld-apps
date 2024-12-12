@@ -4,5 +4,6 @@
       "mode": "auto"
     }
   ],
-  "path-intellisense.extensionOnImport": true
+  "path-intellisense.extensionOnImport": true,
+  "reactSnippets.settings.importReactOnTop": false
 }
