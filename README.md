@@ -97,6 +97,15 @@ This will:
 2. Set up necessary configurations
 3. Update package.json with the new app name
 4. Install dependencies
+5. **IMPORTANT NOTE:** Post scaffolding the app go to `vite.config.ts` file and change `base` property to `/app-name/`
+6. **IMPORTANT NOTE:** For deployment to be successful, you have to add the entry to `vercel.json` file for `rewrites`.
+
+```json
+{
+  "source": "/basic-scroll-snap",
+  "destination": "/apps/basic-scroll-snap/dist/index.html"
+}
+```
 
 ## Development Guidelines
 
