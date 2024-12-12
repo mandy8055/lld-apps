@@ -102,8 +102,8 @@ This will:
 
 ```json
 {
-  "source": "/basic-scroll-snap",
-  "destination": "/apps/basic-scroll-snap/dist/index.html"
+  "source": "/app-name",
+  "destination": "/apps/app-name/dist/index.html"
 }
 ```
 
