@@ -1,6 +1,6 @@
 # LLD Apps
 
-![Vercel Deploy](https://deploy-badge.vercel.app/vercel/lld-apps) [![Main Build](https://github.com/mandy8055/lld-apps/actions/workflows/prod-build.yml/badge.svg)](https://github.com/mandy8055/lld-apps/actions/workflows/prod-build.yml) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-f9ad00.svg)](https://pnpm.io/)
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/lld-apps) [![Build](https://github.com/mandy8055/lld-apps/actions/workflows/preview-build.yml/badge.svg)](https://github.com/mandy8055/lld-apps/actions/workflows/preview-build.yml) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-f9ad00.svg)](https://pnpm.io/)
 
 A monorepo for Low Level Design of common problems implementations using React, TypeScript, and Tailwind CSS. Built with Turborepo and Vite.
 
@@ -132,7 +132,7 @@ To manually trigger a preview deployment:
 
 ### Production Environment
 
-To save the unnecessary builds; production deployment on merging main has been disabled. Now, the **preview build can be promoted to production directly from vercel dashboard**. In case main merge prod deployment is needed below are the steps which can be reused post uncommenting the `prod-build.yml` contents.
+To save the unnecessary builds; production deployment on merging main has been disabled. Now, the **preview build can be promoted to production directly from vercel dashboard**. In case main merge prod deployment is needed below are the steps which can be reused post uncommenting the `prod-build.txt` contents(Also change `.txt` to `.yml` extension).
 
 <!-- Production deployments are automatically triggered when:
 
