@@ -104,6 +104,10 @@ This will:
 {
   "source": "/app-name",
   "destination": "/apps/app-name/dist/index.html"
+},
+{
+  "source": "/app-name/:path*",
+  "destination": "/apps/app-name/dist/:path*"
 }
 ```
 

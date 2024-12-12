@@ -9,12 +9,24 @@
       "destination": "/apps/nested-comments/dist/index.html"
     },
     {
+      "source": "/nested-comments/:path*",
+      "destination": "/apps/nested-comments/dist/:path*"
+    },
+    {
       "source": "/calculator",
       "destination": "/apps/calculator/dist/index.html"
     },
     {
+      "source": "/calculator/:path*",
+      "destination": "/apps/calculator/dist/:path*"
+    },
+    {
       "source": "/basic-scroll-snap",
       "destination": "/apps/basic-scroll-snap/dist/index.html"
+    },
+    {
+      "source": "/basic-scroll-snap/:path*",
+      "destination": "/apps/basic-scroll-snap/dist/:path*"
     }
   ]
 }
