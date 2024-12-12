@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'apps/**'
+      - "apps/**"
 
 jobs:
   build-and-deploy:
@@ -20,13 +20,13 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: '9.0.0'
+          version: "9.0.0"
 
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'pnpm'
+          node-version: "22"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install
@@ -34,7 +34,7 @@ jobs:
       - name: Build all apps
         run: pnpm build
         env:
-          TURBO_REMOTE_ONLY: 'true'
+          TURBO_CACHE: "remote:rw"
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
