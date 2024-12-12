@@ -1,6 +1,6 @@
 # LLD Apps
 
-![Vercel Deploy](https://deploy-badge.vercel.app/vercel/lld-apps) [![Main Build](https://github.com/mandy8055/lld-apps/actions/workflows/prod-build.yml/badge.svg)](https://github.com/mandy8055/lld-apps/actions/workflows/prod-build.yml) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-f9ad00.svg)](https://pnpm.io/)
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/lld-apps) [![Build](https://github.com/mandy8055/lld-apps/actions/workflows/preview-build.yml/badge.svg)](https://github.com/mandy8055/lld-apps/actions/workflows/preview-build.yml) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-f9ad00.svg)](https://pnpm.io/)
 
 A monorepo for Low Level Design of common problems implementations using React, TypeScript, and Tailwind CSS. Built with Turborepo and Vite.
 
@@ -97,6 +97,19 @@ This will:
 2. Set up necessary configurations
 3. Update package.json with the new app name
 4. Install dependencies
+5. **IMPORTANT NOTE:** Post scaffolding the app go to `vite.config.ts` file and change `base` property to `/app-name/`
+6. **IMPORTANT NOTE:** For deployment to be successful, you have to add the entry to `vercel.json` file for `rewrites`.
+
+```json
+{
+  "source": "/app-name",
+  "destination": "/apps/app-name/dist/index.html"
+},
+{
+  "source": "/app-name/:path*",
+  "destination": "/apps/app-name/dist/:path*"
+}
+```
 
 ## Development Guidelines
 
@@ -119,7 +132,9 @@ To manually trigger a preview deployment:
 
 ### Production Environment
 
-Production deployments are automatically triggered when:
+To save the unnecessary builds; production deployment on merging main has been disabled. Now, the **preview build can be promoted to production directly from vercel dashboard**. In case main merge prod deployment is needed below are the steps which can be reused post uncommenting the `prod-build.txt` contents(Also change `.txt` to `.yml` extension).
+
+<!-- Production deployments are automatically triggered when:
 
 1. A pull request is merged into the `main` branch
 2. Changes are made in the `apps/**` directory
@@ -130,7 +145,7 @@ The production build workflow will:
 - Deploy to Vercel production environment
 - Include commit metadata in the deployment
 
-> **Note**: Production deployments do not require manual intervention and are automatically handled by the CI/CD pipeline.
+> **Note**: Production deployments do not require manual intervention and are automatically handled by the CI/CD pipeline. -->
 
 ### Build Optimization
 

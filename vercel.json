@@ -19,6 +19,14 @@
     {
       "source": "/calculator/:path*",
       "destination": "/apps/calculator/dist/:path*"
+    },
+    {
+      "source": "/basic-scroll-snap",
+      "destination": "/apps/basic-scroll-snap/dist/index.html"
+    },
+    {
+      "source": "/basic-scroll-snap/:path*",
+      "destination": "/apps/basic-scroll-snap/dist/:path*"
     }
   ]
 }

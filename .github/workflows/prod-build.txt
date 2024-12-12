@@ -1,0 +1,46 @@
+# name: Main Branch Build
+# on:
+#   push:
+#     branches: [main]
+#     paths:
+#       - "apps/**"
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-24.04
+#     env:
+#       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+#       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+#       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+#       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+#     steps:
+#       - uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 2
+
+#       - uses: pnpm/action-setup@v3
+#         with:
+#           version: "9.0.0"
+
+#       - name: Use Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "22"
+#           cache: "pnpm"
+
+#       - name: Install dependencies
+#         run: pnpm install
+
+#       - name: Build all apps
+#         run: pnpm build
+#         env:
+#           TURBO_CACHE: "remote:rw"
+
+#       - name: Install Vercel CLI
+#         run: npm install --global vercel@latest
+
+#       - name: Pull Vercel Environment Information
+#         run: vercel pull --yes --environment=production --token=${{ secrets.TURBO_TOKEN }}
+
+#       - name: Deploy to Vercel Prod
+#         run: vercel deploy --prod --token=${{ secrets.TURBO_TOKEN }}
