@@ -46,6 +46,25 @@ importers:
         specifier: ^6.0.1
         version: 6.0.3(@types/node@20.17.6)(jiti@1.21.6)(yaml@2.6.1)
 
+  apps/basic-scroll-snap:
+    dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.0.0(react@19.0.0)
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@repo/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/tailwind-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+
   apps/calculator:
     dependencies:
       react:
