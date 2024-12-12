@@ -132,7 +132,9 @@ To manually trigger a preview deployment:
 
 ### Production Environment
 
-Production deployments are automatically triggered when:
+To save the unnecessary builds; production deployment on merging main has been disabled. Now, the **preview build can be promoted to production directly from vercel dashboard**. In case main merge prod deployment is needed below are the steps which can be reused post uncommenting the `prod-build.yml` contents.
+
+<!-- Production deployments are automatically triggered when:
 
 1. A pull request is merged into the `main` branch
 2. Changes are made in the `apps/**` directory
@@ -143,7 +145,7 @@ The production build workflow will:
 - Deploy to Vercel production environment
 - Include commit metadata in the deployment
 
-> **Note**: Production deployments do not require manual intervention and are automatically handled by the CI/CD pipeline.
+> **Note**: Production deployments do not require manual intervention and are automatically handled by the CI/CD pipeline. -->
 
 ### Build Optimization
 
