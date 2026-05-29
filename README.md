@@ -18,8 +18,8 @@ A monorepo for Low Level Design of common problems implementations using React, 
 
 ## Prerequisites
 
-- Node.js >= 18
-- pnpm 9.0.0
+- Node.js >= 24
+- pnpm 11.4.0
 
 ## Quick Start
 

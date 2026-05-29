@@ -2,3 +2,6 @@ packages:
   - 'apps/*'
   - '!apps/template'
   - 'packages/*'
+allowBuilds:
+  '@swc/core': true
+  esbuild: true
