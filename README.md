@@ -97,7 +97,8 @@ This will:
 2. Set up necessary configurations
 3. Update package.json with the new app name
 4. Install dependencies
-5. **IMPORTANT NOTE:** Post scaffolding the app go to `vite.config.ts` file and change `base` property to `/app-name/`
+5. **IMPORTANT NOTE:** Post scaffolding the app go to `vite.config.ts` file and change `base` property to `/app-name/`.
+   > **Why this matters:** The template defaults to `base: './'`. When deployed under a sub-path (e.g. `/scroll-progress`), relative asset paths like `./assets/...` resolve to the site root instead of `/scroll-progress/assets/...`, causing 404s for all JS/CSS assets. Setting `base` to the exact sub-path (e.g. `'/scroll-progress/'`) fixes this.
 6. **IMPORTANT NOTE:** For deployment to be successful, you have to add the entry to `vercel.json` file for `rewrites`.
 
 ```json

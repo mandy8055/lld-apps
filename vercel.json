@@ -27,6 +27,14 @@
     {
       "source": "/basic-scroll-snap/:path*",
       "destination": "/apps/basic-scroll-snap/dist/:path*"
+    },
+    {
+      "source": "/scroll-progress",
+      "destination": "/apps/scroll-progress/dist/index.html"
+    },
+    {
+      "source": "/scroll-progress/:path*",
+      "destination": "/apps/scroll-progress/dist/:path*"
     }
   ]
 }
